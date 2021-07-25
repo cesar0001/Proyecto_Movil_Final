@@ -13,4 +13,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Bienvenida">Hola, estas a un ultimo paso para poder crear tu cuenta. Porfavor verifique su correo
+electronico. que se le ha enviado un codigo para poder crear tu cuenta.</string>
+
 </resources>
