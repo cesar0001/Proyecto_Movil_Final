@@ -52,8 +52,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto_Movil1"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ConfirmacionCodigo"></activity>
-        <activity android:name=".Confirmar_CodigoUsers" />
+        <activity android:name=".Usuarios.Usuarios"></activity>
+        <activity android:name=".ConfirmacionCodigo" />
         <activity android:name=".DashBoard" />
         <activity android:name=".CreateUsers" />
         <activity android:name=".MainActivity">

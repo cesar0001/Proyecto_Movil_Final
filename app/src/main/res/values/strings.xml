@@ -15,5 +15,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Bienvenida">Hola, estas a un ultimo paso para poder crear tu cuenta. Porfavor verifique su correo
 electronico. que se le ha enviado un codigo para poder crear tu cuenta.</string>
+    <string name="enunciado">Para poder recuperar su cuenta, escriba su correo electronico registrado en la parte
+    del texto donde se lo pide. Nosotros le enviaremos la contraseña a su correo previamente registrado.</string>
 
 </resources>

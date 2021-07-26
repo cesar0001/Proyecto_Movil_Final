@@ -28,6 +28,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.proyecto_movil1.Usuarios.Usuarios;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -124,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void clickRecuperarPassword(View view){
-        Toast.makeText(getApplicationContext(),"Click en etiqueta olvidar contraseña",Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), Usuarios.class );
+        startActivity( intent );
     }
 
 

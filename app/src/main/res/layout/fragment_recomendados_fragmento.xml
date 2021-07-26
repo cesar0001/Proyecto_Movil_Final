@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondo"
-    tools:context=".Home_Fragmento">
+    tools:context=".Recomendados_Fragmento">
 
     <!-- TODO: Update blank fragment layout -->
 

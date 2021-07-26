@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.proyecto_movil1.categorias.CrearProductos;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.jetbrains.annotations.NotNull;
@@ -21,8 +22,7 @@ public class DashBoard extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_dash_board );
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new Home_Fragmento()).commit();
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new Categoria_Fragmento()).commit();
 
         bottomNavigationView = findViewById(R.id.ButtonNavigation);;
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -33,13 +33,13 @@ public class DashBoard extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.item1:
-                        fragment= new Home_Fragmento();
-                        break;
-                    case R.id.item2:
                         fragment= new Categoria_Fragmento();
                         break;
+                    case R.id.item2:
+                        fragment= new Recomendados_Fragmento();
+                        break;
                     case R.id.item3:
-                        fragment= new Home_Fragmento();
+                        fragment= new CrearProductos();
                         break;
                 }
 
