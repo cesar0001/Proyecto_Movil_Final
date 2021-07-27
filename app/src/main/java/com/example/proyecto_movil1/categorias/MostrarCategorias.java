@@ -99,6 +99,10 @@ public class MostrarCategorias extends Fragment implements AdapterView.OnItemCli
         //{"id_categoria":2, "nombre": "frijoles"}
         //{"id_categoria":2, "nombre": ""} muestra todo
 
+        MostrarProductos.setId_Categoria( mLista.get( position ).getId() );
+        MostrarProductos.setDescripcion_categoria( mLista.get( position ).getDescripcion() );
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new MostrarProductos()).commit();
+
 
         /*
         Intent intent = new Intent(getApplicationContext(), SegundoActividad.class);

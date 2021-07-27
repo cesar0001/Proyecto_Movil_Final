@@ -19,9 +19,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.proyecto_movil1.Carrito.CarritoCompra;
 import com.example.proyecto_movil1.categorias.CrearCategorias;
 import com.example.proyecto_movil1.categorias.CrearProductos;
+import com.example.proyecto_movil1.categorias.Modelo_Categoria;
 import com.example.proyecto_movil1.categorias.MostrarCategorias;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Categoria_Fragmento extends Fragment implements View.OnClickListener{
 
@@ -32,6 +37,8 @@ public class Categoria_Fragmento extends Fragment implements View.OnClickListene
     private CardView cardCrearCategoria;
     private CardView cardCrearProducto;
     private TextView mydashboard;
+
+    public static List<CarritoCompra> Carrito_Compras = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

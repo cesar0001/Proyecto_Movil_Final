@@ -71,7 +71,7 @@ public class CrearCategorias extends Fragment {
                         textInputLayout.setError( "Campo Obligatorio" );
                     }else{
                         textInputLayout.setError( null );
-                        AlertaDialogo( "bien","ads" );
+                        CrearCategoria();
                     }
                 }
 
@@ -132,23 +132,17 @@ public class CrearCategorias extends Fragment {
     private void CrearCategoria()
     {
 
-        /*
-        String url = "http://167.99.158.191/Api_pedidos_ProyectoFinal/Usuarios/crear_usuarios.php";
+
+        String url = "http://167.99.158.191/Api_pedidos_ProyectoFinal/Categoria/crearCategoria.php";
 
         HashMap<String, String> params = new HashMap<String, String>();
 
 
-        params.put("nombres", nombreCC.toLowerCase());
-        params.put("telefonos", telefonoCC);
-        params.put("direccion", direccionCC);
-        params.put("usuario", usuarioCC);
-        params.put("contrasenia", contraseniaCC);
-        params.put("correo", correoCC);
-        params.put("latitud", latitudCC);
-        params.put("longitud", longitudCC);
-        params.put("url_foto", GetStringImage( url_fotoCC ));
+        params.put("descripcion", textInputLayout.getEditText().getText().toString());
+        params.put("url_foto", GetStringImage( photo ));
 
 
+        /*
         formato del json
         {
             "nombres":"nombres",
@@ -159,6 +153,8 @@ public class CrearCategorias extends Fragment {
                 "correo":"correo",
                 "url_foto":""
         }
+      */
+
 
 
 
@@ -182,7 +178,7 @@ public class CrearCategorias extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
         requestQueue.add(jsonObjectRequest);
 
-        */
+
 
     }
 
