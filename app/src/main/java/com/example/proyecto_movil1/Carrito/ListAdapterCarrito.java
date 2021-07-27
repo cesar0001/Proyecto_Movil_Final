@@ -1,4 +1,4 @@
-package com.example.proyecto_movil1.categorias;
+package com.example.proyecto_movil1.Carrito;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,17 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.proyecto_movil1.R;
-import com.squareup.picasso.Picasso;
+ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ListAdapterProductos extends ArrayAdapter {
+public class ListAdapterCarrito extends ArrayAdapter {
 
-    private List<Modelo_Productos> mLista;
+    private List<CarritoCompra> mLista;
     private Context context;
     private int resourceLayout;
 
-    public ListAdapterProductos(@NonNull Context context, int resource, @NonNull List<Modelo_Productos> objects) {
+    public ListAdapterCarrito(@NonNull Context context, int resource, @NonNull List<CarritoCompra> objects) {
         super(context, resource, objects);
         this.context = context;
         this.mLista = objects;
@@ -41,16 +41,23 @@ public class ListAdapterProductos extends ArrayAdapter {
             view = LayoutInflater.from(context).inflate(resourceLayout,null);
         }
 
-        Modelo_Productos modelo = mLista.get(position);
+        CarritoCompra modelo = mLista.get(position);
 
+        //imagen
         ImageView imageView = view.findViewById( R.id.imagePedidos );
         Picasso.with(context).load(modelo.getUrl()).into(imageView);
 
-        TextView nom = view.findViewById( R.id.txtNombreP );
+        //nombre
+        TextView nom = view.findViewById( R.id.txtNombrePedidos );
         nom.setText( modelo.getNombre() );
 
-        TextView descrip = view.findViewById(R.id.txtDescripcionRowP);
-        descrip.setText(modelo.getDescripcion());
+        //precio
+        TextView precio = view.findViewById(R.id.txtPrecioP);
+        precio.setText("Precio Unitario: "+modelo.getPrecio());
+
+        //precio
+        TextView cantidad = view.findViewById(R.id.txtCant);
+        cantidad.setText("Cantidad: "+modelo.getCantidad());
 
         //return super.getView(position, convertView, parent);
         return view;

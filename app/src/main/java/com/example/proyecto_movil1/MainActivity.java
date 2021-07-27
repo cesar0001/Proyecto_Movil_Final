@@ -133,65 +133,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void buscarUsuario(){
 
-        // String url = "http://167.99.158.191/pedidos/login.php?nombre="+txtnombre.getEditText().getText().toString() +
-         //        "&contra="+txtPassword.getEditText().getText().toString();
-
-        /*
-        String url = "http://167.99.158.191/Api_pedidos_ProyectoFinal/login.php";
-
-
-        HashMap<String, String> params = new HashMap<String, String>();
-
-         params.put("usuario", txtnombre.getEditText().getText().toString().toLowerCase());
-        params.put("contrasenia", txtPassword.getEditText().getText().toString());
-
-         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-
-                JSONObject jsonObject = null;
-
-
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        jsonObject = response.getJSONObject( i );
-                        //Toast.makeText( getApplicationContext(), ""+jsonObject.getString("correo"),Toast.LENGTH_SHORT ).show();
-                        setNombre( jsonObject.getString( "nombres" )  );
-                        setTelefono( jsonObject.getString( "telefono" ) );
-                        setLatitud( jsonObject.getString( "latitud" ) );
-                        setLongitud( jsonObject.getString( "longitud" ) );
-                        setDireccion( jsonObject.getString( "direccion" ) );
-                        setUrl_foto( jsonObject.getString( "url_foto" ) );
-                        setUsuario( jsonObject.getString( "usuario" ) );
-                        setContraseña( jsonObject.getString( "contrasenia" ) );
-                        setCorreo( jsonObject.getString( "correo" ) );
-                        setTipo_usuario( jsonObject.getString( "descripcion" ) );
-
-
-                    } catch (JSONException e) {
-                        Toast.makeText( getApplicationContext(), "pr "+e.getMessage(), Toast.LENGTH_SHORT ).show();
-                    }
-                }
-
-                if (txtnombre.getEditText().getText().toString().equals( getUsuario() ) && txtPassword.getEditText().getText().toString().equals( getContraseña() )) {
-                    snackbar( "Contraseña correcta" );
-                } else {
-                    snackbar( "Contraseña incorrecta" );
-                }
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error de conexion al buscar", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
-
-         */
 
         String url = "http://167.99.158.191/Api_pedidos_ProyectoFinal/login.php";
 

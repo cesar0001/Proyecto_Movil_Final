@@ -70,6 +70,7 @@ public class MostrarProductos extends Fragment  {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Toast.makeText( getContext(),"d32",Toast.LENGTH_SHORT ).show();
 
+                detalles_Productos.setUrl_photo_detalle( mLista.get( position ).getUrl() );
                 detalles_Productos.setNombre_pro( mLista.get( position ).getNombre() );
                 detalles_Productos.setPrecio_pro( mLista.get( position ).getPrecio_venta() );
                 //
@@ -169,7 +170,7 @@ public class MostrarProductos extends Fragment  {
                                 }
 
                             } else { //If the response is not valid, the request also failed
-                                Toast.makeText(getActivity().getApplicationContext(), "array vacio", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity().getApplicationContext(), "Sin Datos", Toast.LENGTH_SHORT).show();
 
                                 //Log.e("ErrorOnRequest", "The server responded correctly, but with an empty array!");
                             }

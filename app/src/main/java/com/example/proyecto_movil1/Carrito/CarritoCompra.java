@@ -5,6 +5,7 @@ public class CarritoCompra {
     private String nombre;
     private String precio;
     private String cantidad;
+    private String url;
 
     public CarritoCompra() {
     }
@@ -37,5 +38,13 @@ public class CarritoCompra {
 
     public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

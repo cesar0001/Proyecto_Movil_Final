@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.proyecto_movil1.Carrito.CarritoCompra;
+import com.example.proyecto_movil1.Pedidos.PedidosFragmento;
 import com.example.proyecto_movil1.categorias.CrearCategorias;
 import com.example.proyecto_movil1.categorias.CrearProductos;
 import com.example.proyecto_movil1.categorias.Modelo_Categoria;
@@ -91,7 +92,14 @@ public class Categoria_Fragmento extends Fragment implements View.OnClickListene
                 break;
             case R.id.cardPedidos:
 
-                Toast.makeText(getContext(), "pedidos", Toast.LENGTH_SHORT).show();
+                if(Carrito_Compras.size()==0){
+                    AlertaDialogo( "Debe de agregar productos al carrito para crear pedido","Sin productos" );
+                }else{
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new PedidosFragmento()).commit();
+                }
+
+
+                //Toast.makeText(getContext(), "pedidos", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.cardTracking:
