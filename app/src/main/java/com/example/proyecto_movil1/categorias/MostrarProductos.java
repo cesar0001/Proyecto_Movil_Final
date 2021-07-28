@@ -73,6 +73,8 @@ public class MostrarProductos extends Fragment  {
                 detalles_Productos.setUrl_photo_detalle( mLista.get( position ).getUrl() );
                 detalles_Productos.setNombre_pro( mLista.get( position ).getNombre() );
                 detalles_Productos.setPrecio_pro( mLista.get( position ).getPrecio_venta() );
+                detalles_Productos.setId_producto_detalles( mLista.get( position ).getId_producto() );
+
                 //
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new detalles_Productos()).commit();
 

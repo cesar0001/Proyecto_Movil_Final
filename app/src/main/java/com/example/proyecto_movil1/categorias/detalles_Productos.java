@@ -29,7 +29,7 @@ public class detalles_Productos extends Fragment {
 
     private int numero = 1;
 
-    public static String Nombre_pro,Precio_pro="0",Url_photo_detalle;
+    public static String Nombre_pro,Precio_pro="0",Url_photo_detalle,id_producto_detalles;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -96,6 +96,7 @@ public class detalles_Productos extends Fragment {
                 carrito.setCantidad( show.getEditText().getText().toString() );
                 carrito.setPrecio( Precio_pro );
                 carrito.setUrl( Url_photo_detalle );
+                carrito.setId_Producto( id_producto_detalles );
 
                 Categoria_Fragmento.Carrito_Compras.add( carrito );
                 Toast.makeText( getContext(), "Tiene: "+Categoria_Fragmento.Carrito_Compras.size() +" elementos en el Carrito de compras.",Toast.LENGTH_SHORT).show();
@@ -142,5 +143,13 @@ public class detalles_Productos extends Fragment {
 
     public static void setUrl_photo_detalle(String url_photo_detalle) {
         Url_photo_detalle = url_photo_detalle;
+    }
+
+    public static String getId_producto_detalles() {
+        return id_producto_detalles;
+    }
+
+    public static void setId_producto_detalles(String id_producto_detalles) {
+        detalles_Productos.id_producto_detalles = id_producto_detalles;
     }
 }

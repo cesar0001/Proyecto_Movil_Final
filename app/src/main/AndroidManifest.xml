@@ -52,21 +52,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto_Movil1"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Usuarios.Usuarios"></activity>
-        <activity android:name=".ConfirmacionCodigo" />
-        <activity android:name=".DashBoard" />
-        <activity android:name=".CreateUsers" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashScreen" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity android:name=".Usuarios.Usuarios" />
+        <activity android:name=".ConfirmacionCodigo" />
+        <activity android:name=".DashBoard" />
+        <activity android:name=".CreateUsers" />
+        <activity android:name=".MainActivity">
+
         </activity>
 
+        <!-- com.example.pm2e2grupo5 -->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.pm2e2grupo5.fileprovider"
+            android:authorities="com.example.proyecto_movil1.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

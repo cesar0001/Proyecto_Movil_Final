@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     TextInputLayout txtnombre, txtPassword;
 
     public static String nombre ="";
+    public static String id_usuario ="";
     public static String telefono ="";
     public static String latitud ="";
     public static String longitud ="";
@@ -150,8 +151,9 @@ public class MainActivity extends AppCompatActivity {
 
                         try {
                             //jsonObject = response.getJSONObject(i);
-                            snackbar( jsonObject.getString("correo" ) );
+                            //snackbar( jsonObject.getString("correo" ) );
                             setNombre( jsonObject.getString( "nombres" )  );
+                            setId_usuario( jsonObject.getString( "id_usuario" ) );
                             setTelefono( jsonObject.getString( "telefono" ) );
                             setLatitud( jsonObject.getString( "latitud" ) );
                             setLongitud( jsonObject.getString( "longitud" ) );
@@ -299,6 +301,14 @@ public class MainActivity extends AppCompatActivity {
 
     public static String getUrl_foto() {
         return url_foto;
+    }
+
+    public static String getId_usuario() {
+        return id_usuario;
+    }
+
+    public static void setId_usuario(String id_usuario) {
+        MainActivity.id_usuario = id_usuario;
     }
 
     public static void setUrl_foto(String url_foto) {

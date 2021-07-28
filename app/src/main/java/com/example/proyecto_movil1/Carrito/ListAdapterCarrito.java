@@ -55,7 +55,7 @@ public class ListAdapterCarrito extends ArrayAdapter {
         TextView precio = view.findViewById(R.id.txtPrecioP);
         precio.setText("Precio Unitario: "+modelo.getPrecio());
 
-        //precio
+        //cantidad
         TextView cantidad = view.findViewById(R.id.txtCant);
         cantidad.setText("Cantidad: "+modelo.getCantidad());
 

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.proyecto_movil1.Creditos.Creditos;
 import com.example.proyecto_movil1.categorias.CrearProductos;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -36,7 +37,7 @@ public class DashBoard extends AppCompatActivity {
                         fragment= new Categoria_Fragmento();
                         break;
                     case R.id.item2:
-                        fragment= new Recomendados_Fragmento();
+                        fragment= new Creditos();
                         break;
                     case R.id.item3:
                         fragment= new CrearProductos();

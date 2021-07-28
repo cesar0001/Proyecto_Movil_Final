@@ -11,8 +11,8 @@
 
     <item
         android:id="@+id/item2"
-        android:icon="@drawable/categori"
-        android:title="Category">
+        android:icon="@drawable/tocarme"
+        android:title="Creditos">
 
 
     </item>

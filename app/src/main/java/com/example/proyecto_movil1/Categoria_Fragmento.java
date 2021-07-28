@@ -1,21 +1,15 @@
 package com.example.proyecto_movil1;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +17,6 @@ import com.example.proyecto_movil1.Carrito.CarritoCompra;
 import com.example.proyecto_movil1.Pedidos.PedidosFragmento;
 import com.example.proyecto_movil1.categorias.CrearCategorias;
 import com.example.proyecto_movil1.categorias.CrearProductos;
-import com.example.proyecto_movil1.categorias.Modelo_Categoria;
 import com.example.proyecto_movil1.categorias.MostrarCategorias;
 
 import java.util.ArrayList;
@@ -34,7 +27,7 @@ public class Categoria_Fragmento extends Fragment implements View.OnClickListene
     private CardView cardProductos;
     private CardView cardPedidos;
     private CardView cardTracking;
-    private CardView cardSetting;
+    private CardView cardRecomendado;
     private CardView cardCrearCategoria;
     private CardView cardCrearProducto;
     private TextView mydashboard;
@@ -59,8 +52,8 @@ public class Categoria_Fragmento extends Fragment implements View.OnClickListene
         cardTracking = viewGroup.findViewById( R.id.cardTracking );
         cardTracking.setOnClickListener( this::onClick );
 
-        cardSetting = viewGroup.findViewById( R.id.cardSetting );
-        cardSetting.setOnClickListener( this::onClick );
+        cardRecomendado = viewGroup.findViewById( R.id.cardProductRecom );
+        cardRecomendado.setOnClickListener( this::onClick );
 
         cardCrearCategoria = viewGroup.findViewById( R.id.cardCrearCategoria );
         cardCrearCategoria.setOnClickListener( this::onClick );
@@ -107,9 +100,9 @@ public class Categoria_Fragmento extends Fragment implements View.OnClickListene
                 Toast.makeText(getContext(), "Tracking", Toast.LENGTH_SHORT).show();
                 break;
 
-            case R.id.cardSetting:
+            case R.id.cardProductRecom:
 
-                Toast.makeText(getContext(), "Setting", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "producto recomendado", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.cardCrearCategoria:

@@ -30,7 +30,7 @@ public class PedidosFragmento extends Fragment {
     private ListView mlistView;
     ListAdapterCarrito mAdapter;
 
-   private TextView textoTotal;
+   private TextView textoSubTotal,textoshowImpuesto,textTotal;
 
 /*
     @Override
@@ -45,11 +45,15 @@ public class PedidosFragmento extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         ViewGroup viewGroup = (ViewGroup) inflater.inflate( R.layout.fragment_pedidos_fragmento, container, false );
 
         mlistView = viewGroup.findViewById( R.id.listPedidoCarrito );
-        textoTotal = viewGroup.findViewById( R.id.textoTotal );
+        textoSubTotal = viewGroup.findViewById( R.id.textosubTotal );
+
+        textoshowImpuesto = viewGroup.findViewById( R.id.textoshowImpuesto );
+        textTotal = viewGroup.findViewById( R.id.textTotal );
 
         mlistView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
@@ -113,6 +117,9 @@ public class PedidosFragmento extends Fragment {
     private void TotalProductos(){
 
         Double suma = 0.0;
+        Double impuesto = 0.0;
+        Double temporal = 0.0;
+
         if(Categoria_Fragmento.Carrito_Compras.size()!=0) {
 
 
@@ -127,17 +134,25 @@ public class PedidosFragmento extends Fragment {
 
 
                     suma = suma + producto;
-                    textoTotal.setText( String.valueOf( suma ) );
+                    textoSubTotal.setText( String.valueOf( suma ) );
+
+                    impuesto = suma * 0.15;
+                    textoshowImpuesto.setText( String.valueOf( impuesto ) );
+
+                    temporal = suma + impuesto;
+                    textTotal.setText( String.valueOf( temporal ) );
 
                 } catch (Exception e) {
                     Toast.makeText( getActivity(), "Error al calcular total", Toast.LENGTH_SHORT ).show();
-                    textoTotal.setText( "0.00" );
+                    textoSubTotal.setText( "0.00" );
                 }
 
 
             }
         }else{
-            textoTotal.setText( "0.00" );
+            textoSubTotal.setText( "0.00" );
+            textoshowImpuesto.setText( "0.00" );
+            textTotal.setText( "0.00" );
         }
 
     }
