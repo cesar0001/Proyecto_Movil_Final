@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.proyecto_movil1.Creditos.Creditos;
+import com.example.proyecto_movil1.Usuarios.Modificar_Usuarios;
 import com.example.proyecto_movil1.categorias.CrearProductos;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -40,7 +41,7 @@ public class DashBoard extends AppCompatActivity {
                         fragment= new Creditos();
                         break;
                     case R.id.item3:
-                        fragment= new CrearProductos();
+                        fragment= new Modificar_Usuarios();
                         break;
                 }
 

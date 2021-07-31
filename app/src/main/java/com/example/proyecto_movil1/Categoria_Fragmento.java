@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.proyecto_movil1.Carrito.CarritoCompra;
+import com.example.proyecto_movil1.P_Recomendados.Recomendados_Fragmento;
 import com.example.proyecto_movil1.Pedidos.PedidosFragmento;
 import com.example.proyecto_movil1.categorias.CrearCategorias;
 import com.example.proyecto_movil1.categorias.CrearProductos;
@@ -102,7 +103,8 @@ public class Categoria_Fragmento extends Fragment implements View.OnClickListene
 
             case R.id.cardProductRecom:
 
-                Toast.makeText(getContext(), "producto recomendado", Toast.LENGTH_SHORT).show();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new Recomendados_Fragmento()).commit();
+
                 break;
 
             case R.id.cardCrearCategoria:

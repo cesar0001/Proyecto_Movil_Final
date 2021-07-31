@@ -46,10 +46,10 @@ public class ListAdapterProductos extends ArrayAdapter {
         ImageView imageView = view.findViewById( R.id.imagePedidos );
         Picasso.with(context).load(modelo.getUrl()).into(imageView);
 
-        TextView nom = view.findViewById( R.id.txtNombreP );
+        TextView nom = view.findViewById( R.id.txtCategoriaRow );
         nom.setText( modelo.getNombre() );
 
-        TextView descrip = view.findViewById(R.id.txtDescripcionRowP);
+        TextView descrip = view.findViewById(R.id.txtNameProducts );
         descrip.setText(modelo.getDescripcion());
 
         //return super.getView(position, convertView, parent);

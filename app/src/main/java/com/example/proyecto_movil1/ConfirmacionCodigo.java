@@ -299,6 +299,8 @@ public class ConfirmacionCodigo extends AppCompatActivity {
 
     }
 
+
+
     //get y set
 
     public static String getNombreCC() {
