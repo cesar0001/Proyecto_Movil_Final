@@ -85,11 +85,16 @@ public class PedidosFragmento extends Fragment {
             @Override
             public void onClick(View v) {
 
+                /*
                 new Thread(new Runnable() {
                     public void run() {
                         GuardarPedido();
                     }
                 }).start();
+
+                 */
+
+                GuardarPedidosConfirmados();
 
             }
         } );
@@ -203,6 +208,77 @@ public class PedidosFragmento extends Fragment {
 
     }
 
+    private void GuardarPedidosConfirmados(){
+
+        String url = "http://167.99.158.191/Api_pedidos_ProyectoFinal/pedidos/insertProductoPedido.php";
+
+        int tamaño = Categoria_Fragmento.Carrito_Compras.size();
+        Posicion = 0;
+
+        //" {"id_usuario":5,"productos":[{"id_producto":9,cantidad},{"id_producto":10}]}"
+
+
+        String json = "";
+        String cadena = "";
+
+        String producto = "\"id_producto\"";
+        String cantidad = "\"cantidad\"";
+
+        String prod="";
+
+        while (Posicion < tamaño) {
+
+
+            prod = "{ "+producto+": "+Categoria_Fragmento.Carrito_Compras.get( Posicion ).getId_Producto()+", "+cantidad+": " + Categoria_Fragmento.Carrito_Compras.get( Posicion ).getCantidad() + " },\n";
+
+            cadena += prod;
+
+            Posicion++;
+
+        }
+
+        char[] tempCharArray = cadena.toCharArray();
+        tempCharArray[cadena.length()-2] = ' '; // Donde 'x' es la posición que buscas.
+        cadena = String.valueOf(tempCharArray);
+
+
+        json ="{id_usuario " + MainActivity.getId_usuario() + "}," +
+                "id_producto: ["+cadena+"]";
+
+        HashMap<String, String> params = new HashMap<String, String>();
+
+
+        params.put( "id_usuario",  " " );
+        params.put( "id_producto", "" );
+        params.put( "cantidad",  " ");
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest( url, new JSONObject( params ),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //AlertaDialogo( "Informacion Guardada Exitosamente!!!","Registro" );
+
+                             AlertaDialogoM( "Informacion Guardada Exitosamente!!!","Registro" );
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // VolleyLog.d("Error", "Error: " + error.getMessage());
+                //AlertaDialogo( "Error al conectarse al servidor", "Error" );
+                Toast.makeText( getContext(),"Error al conectarse al servidor",Toast.LENGTH_SHORT ).show();
+            }
+        } );
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue( getContext() );
+        requestQueue.add( jsonObjectRequest );
+
+        //AlertaDialogoM( json,"" );
+
+        }
+
     private void GuardarPedido()
     {
 
@@ -219,6 +295,7 @@ public class PedidosFragmento extends Fragment {
             params.put( "id_producto", Categoria_Fragmento.Carrito_Compras.get( Posicion ).getId_Producto() );
             params.put( "cantidad",  Categoria_Fragmento.Carrito_Compras.get( Posicion ).getCantidad());
 
+           //" {"id_usuario":5,"productos":[{"id_producto":9,cantidad},{"id_producto":10}]}"
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest( url, new JSONObject( params ),
                     new Response.Listener<JSONObject>() {

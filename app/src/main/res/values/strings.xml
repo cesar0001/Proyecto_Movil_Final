@@ -17,5 +17,6 @@
 electronico. que se le ha enviado un codigo para poder crear tu cuenta.</string>
     <string name="enunciado">Para poder recuperar su cuenta, escriba su correo electronico registrado en la parte
     del texto donde se lo pide. Nosotros le enviaremos la contraseña a su correo previamente registrado.</string>
+    <string name="title_activity_activitdad_mapa">Activitdad_Mapa</string>
 
 </resources>

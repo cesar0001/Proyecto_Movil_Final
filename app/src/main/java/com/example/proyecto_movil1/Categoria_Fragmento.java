@@ -11,11 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.proyecto_movil1.Carrito.CarritoCompra;
 import com.example.proyecto_movil1.P_Recomendados.Recomendados_Fragmento;
 import com.example.proyecto_movil1.Pedidos.PedidosFragmento;
+import com.example.proyecto_movil1.Tranking.FragmentoPedidosRepartidor;
 import com.example.proyecto_movil1.categorias.CrearCategorias;
 import com.example.proyecto_movil1.categorias.CrearProductos;
 import com.example.proyecto_movil1.categorias.MostrarCategorias;
@@ -50,7 +50,7 @@ public class Categoria_Fragmento extends Fragment implements View.OnClickListene
         cardPedidos = viewGroup.findViewById( R.id.cardPedidos );
         cardPedidos.setOnClickListener( this::onClick );
 
-        cardTracking = viewGroup.findViewById( R.id.cardTracking );
+        cardTracking = viewGroup.findViewById( R.id.cardPedidos_Repartidor );
         cardTracking.setOnClickListener( this::onClick );
 
         cardRecomendado = viewGroup.findViewById( R.id.cardProductRecom );
@@ -66,6 +66,8 @@ public class Categoria_Fragmento extends Fragment implements View.OnClickListene
              cardCrearCategoria.setVisibility( View.GONE );
              cardCrearProducto.setVisibility( View.GONE );
         }
+
+
 
         return viewGroup;
     }
@@ -96,9 +98,23 @@ public class Categoria_Fragmento extends Fragment implements View.OnClickListene
                 //Toast.makeText(getContext(), "pedidos", Toast.LENGTH_SHORT).show();
                 break;
 
-            case R.id.cardTracking:
+            case R.id.cardPedidos_Repartidor:
 
-                Toast.makeText(getContext(), "Tracking", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Tracking", Toast.LENGTH_SHORT).show();
+
+                if(MainActivity.getTipo_usuario().equals( "Repartidor" )){
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new FragmentoPedidosRepartidor()).commit();
+
+                }else{
+
+                    FragmentoMapa.setLatitud_map( Double.parseDouble( MainActivity.getLatitud() ) );
+                    FragmentoMapa.setLongitud_map( Double.parseDouble( MainActivity.getLongitud()) );
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new FragmentoMapa()).commit();
+
+                }
+
+
+
                 break;
 
             case R.id.cardProductRecom:
