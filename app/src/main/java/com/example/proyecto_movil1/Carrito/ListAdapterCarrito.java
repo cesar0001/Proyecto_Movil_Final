@@ -44,7 +44,7 @@ public class ListAdapterCarrito extends ArrayAdapter {
         CarritoCompra modelo = mLista.get(position);
 
         //imagen
-        ImageView imageView = view.findViewById( R.id.imagePedidos );
+        ImageView imageView = view.findViewById( R.id.imgProductosLLevado );
         Picasso.with(context).load(modelo.getUrl()).into(imageView);
 
         //nombre

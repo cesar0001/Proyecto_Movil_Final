@@ -26,6 +26,7 @@ import com.example.proyecto_movil1.Categoria_Fragmento;
 import com.example.proyecto_movil1.MainActivity;
 import com.example.proyecto_movil1.R;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
@@ -94,7 +95,16 @@ public class PedidosFragmento extends Fragment {
 
                  */
 
-                GuardarPedidosConfirmados();
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            GuardarPedidosConfirmados();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+
 
             }
         } );
@@ -208,14 +218,14 @@ public class PedidosFragmento extends Fragment {
 
     }
 
-    private void GuardarPedidosConfirmados(){
+    private void GuardarPedidosConfirmados() throws JSONException {
 
         String url = "http://167.99.158.191/Api_pedidos_ProyectoFinal/pedidos/insertProductoPedido.php";
 
         int tamaño = Categoria_Fragmento.Carrito_Compras.size();
         Posicion = 0;
 
-        //" {"id_usuario":5,"productos":[{"id_producto":9,cantidad},{"id_producto":10}]}"
+        //" {"id_usuario":5,"productos":[{"id_producto":9,"cantidad":4},{"id_producto":10}]}"
 
 
         String json = "";
@@ -241,19 +251,19 @@ public class PedidosFragmento extends Fragment {
         tempCharArray[cadena.length()-2] = ' '; // Donde 'x' es la posición que buscas.
         cadena = String.valueOf(tempCharArray);
 
+        String id_usuario = "\"id_usuario\"";
+        String id_productos = "\"productos\"";
 
-        json ="{id_usuario " + MainActivity.getId_usuario() + "}," +
-                "id_producto: ["+cadena+"]";
+        json ="{"+id_usuario+":" + MainActivity.getId_usuario() + "," +
+                ""+id_productos+": ["+cadena+"]}";
 
+
+        /*
         HashMap<String, String> params = new HashMap<String, String>();
+        params.put( "id_producto", json);
+         */
 
-
-        params.put( "id_usuario",  " " );
-        params.put( "id_producto", "" );
-        params.put( "cantidad",  " ");
-
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest( url, new JSONObject( params ),
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest( url, new JSONObject( json ),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -275,7 +285,10 @@ public class PedidosFragmento extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue( getContext() );
         requestQueue.add( jsonObjectRequest );
 
-        //AlertaDialogoM( json,"" );
+
+
+       // AlertaDialogoM( json,"" );
+        //System.out.println(json);
 
         }
 

@@ -1,28 +1,26 @@
-package com.example.proyecto_movil1.categorias;
+package com.example.proyecto_movil1.Pedidos;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.proyecto_movil1.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ListAdapterProductos extends ArrayAdapter {
+public class ListAdapterMisPedidos extends ArrayAdapter {
 
-    private List<Modelo_Productos> mLista;
+    private List<Modelo_MisPedidos> mLista;
     private Context context;
     private int resourceLayout;
 
-    public ListAdapterProductos(@NonNull Context context, int resource, @NonNull List<Modelo_Productos> objects) {
+    public ListAdapterMisPedidos(@NonNull Context context, int resource, @NonNull List<Modelo_MisPedidos> objects) {
         super(context, resource, objects);
         this.context = context;
         this.mLista = objects;
@@ -41,16 +39,17 @@ public class ListAdapterProductos extends ArrayAdapter {
             view = LayoutInflater.from(context).inflate(resourceLayout,null);
         }
 
-        Modelo_Productos modelo = mLista.get(position);
+        Modelo_MisPedidos modelo = mLista.get(position);
 
-        ImageView imageView = view.findViewById( R.id.imgProductosLLevado );
-        Picasso.with(context).load(modelo.getUrl()).into(imageView);
 
-        TextView nom = view.findViewById( R.id.NombreProductos );
-        nom.setText( modelo.getNombre() );
+        TextView nombre = view.findViewById(R.id.Name_product );
+        nombre.setText(modelo.getPedido());
 
-        TextView descrip = view.findViewById(R.id.DescripProductos );
-        descrip.setText(modelo.getDescripcion());
+        TextView fecha = view.findViewById(R.id.Cantidad_p );
+        fecha.setText(modelo.getFecha());
+
+        TextView status = view.findViewById(R.id.misstatus);
+        status.setText(modelo.getStatus());
 
         //return super.getView(position, convertView, parent);
         return view;

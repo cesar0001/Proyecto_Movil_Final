@@ -60,10 +60,9 @@ public class FragmentoPedidosRepartidor extends Fragment {
                         Modelo_Repartidor modelo = new Modelo_Repartidor();
                         modelo.setNombre( jsonObject.getString( " " ) );
                         modelo.setFecha(jsonObject.getString(" "));
-                        modelo.setStatus(jsonObject.getString(" "));
+                        modelo.setStatus(jsonObject.getString(""));
 
                         mLista.add(modelo);
-
 
                         mAdapter = new ListAdapterPedidosRepartidor(getActivity().getApplicationContext(), R.layout.item_row_pedidos_repartidor, mLista);
 

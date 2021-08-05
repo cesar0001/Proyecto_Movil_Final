@@ -17,7 +17,7 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/imagePedidos"
+            android:id="@+id/imgProductosLLevado"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:src="@mipmap/ic_launcher" />
@@ -28,7 +28,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtCategoriaRow"
+                android:id="@+id/NombreProductos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -40,7 +40,7 @@
                 />
 
             <TextView
-                android:id="@+id/txtNameProducts"
+                android:id="@+id/DescripProductos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"

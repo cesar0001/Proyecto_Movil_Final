@@ -4,14 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/activity_create_users.xml" value="0.13858695652173914" />
+        <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/activity_dash_board.xml" value="0.13360507246376813" />
         <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/fragment_categoria_fragmento.xml" value="0.11684782608695653" />
         <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/fragment_fragmento_pedidos_repartidor.xml" value="0.11684782608695653" />
+        <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/fragment_informacion_pedidos.xml" value="0.13360507246376813" />
+        <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/fragment_mis_pedidos.xml" value="0.13360507246376813" />
         <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/fragment_modificar__usuarios.xml" value="0.13858695652173914" />
+        <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/fragment_mostrar_categorias.xml" value="0.13360507246376813" />
         <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/fragment_mostrar_productos.xml" value="0.12182971014492754" />
         <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/fragment_recomendados_fragmento.xml" value="0.12182971014492754" />
+        <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/item_row_lista_productos.xml" value="0.13360507246376813" />
+        <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/item_row_mis_pedidos.xml" value="0.13360507246376813" />
         <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/item_row_pedidos_repartidor.xml" value="0.15" />
         <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/item_row_productos.xml" value="0.12182971014492754" />
         <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/layout/item_row_productos_recomendados.xml" value="0.22" />
+        <entry key="..\:/Users/MET/Desktop/clases online/Programacion Movil 1/Proyecto_Movil1/app/src/main/res/menu/menu.xml" value="0.1638888888888889" />
       </map>
     </option>
   </component>

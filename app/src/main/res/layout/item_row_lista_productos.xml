@@ -17,10 +17,10 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/imagePRecomendados"
+            android:id="@+id/imgProductosLLevado"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="10dp"
             android:src="@mipmap/ic_launcher" />
 
         <LinearLayout
@@ -40,9 +40,8 @@
 
                 />
 
-
             <TextView
-                android:id="@+id/txtNameProductsR"
+                android:id="@+id/Cantidad_p"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -53,17 +52,18 @@
 
                 />
 
-            <RatingBar
-                android:id="@+id/ratingBar1"
-                android:layout_width="240dp"
+
+            <TextView
+                android:id="@+id/Precio"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="20px"
-                android:isIndicator="true"
-                 android:numStars="5"
-                android:max="5"
-                android:stepSize="0.1"
-                android:rating="1"
-                tools:ignore="SpeakableTextPresentCheck" />
+                android:layout_margin="5dp"
+                android:text="precio"
+                android:textColor="#a9a9a9"
+                android:textSize="14sp"
+                android:textStyle="bold"
+
+                />
 
 
         </LinearLayout>

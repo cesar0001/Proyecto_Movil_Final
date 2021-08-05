@@ -48,7 +48,7 @@ public class ListAdapterProductosRecomendados extends ArrayAdapter {
         Picasso.with(context).load(modelo.getUrl_photo()).into(imageView);
 
         //categoria
-        TextView categoria = view.findViewById( R.id.txtCategoriaRow );
+        TextView categoria = view.findViewById( R.id.Name_product );
         categoria.setText( modelo.getCategoria() );
 
         //producto

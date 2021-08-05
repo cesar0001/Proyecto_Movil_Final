@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
     public static String tipo_usuario ="";
     public static String url_foto ="";
 
+    public static String LatitudGuardada = "";
+    public static String LongitudGuardada = "";
+
     CoordinatorLayout snackbar_layout;
 
     @Override
@@ -163,6 +166,9 @@ public class MainActivity extends AppCompatActivity {
                             setContraseña( jsonObject.getString( "contrasenia" ) );
                             setCorreo( jsonObject.getString( "correo" ) );
                             setTipo_usuario( jsonObject.getString( "descripcion" ) );
+
+                            setLatitudGuardada( jsonObject.getString( "latitud" ) );
+                            setLongitudGuardada( jsonObject.getString( "longitud" ) );
 
                             if (txtnombre.getEditText().getText().toString().equals( getUsuario() ) && txtPassword.getEditText().getText().toString().equals( getContraseña() )) {
                                 snackbar( "Contraseña correcta" );
@@ -305,6 +311,22 @@ public class MainActivity extends AppCompatActivity {
 
     public static String getId_usuario() {
         return id_usuario;
+    }
+
+    public static String getLatitudGuardada() {
+        return LatitudGuardada;
+    }
+
+    public static void setLatitudGuardada(String latitudGuardada) {
+        LatitudGuardada = latitudGuardada;
+    }
+
+    public static String getLongitudGuardada() {
+        return LongitudGuardada;
+    }
+
+    public static void setLongitudGuardada(String longitudGuardada) {
+        LongitudGuardada = longitudGuardada;
     }
 
     public static void setId_usuario(String id_usuario) {

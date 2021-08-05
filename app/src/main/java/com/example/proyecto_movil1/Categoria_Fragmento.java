@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.proyecto_movil1.Carrito.CarritoCompra;
 import com.example.proyecto_movil1.P_Recomendados.Recomendados_Fragmento;
 import com.example.proyecto_movil1.Pedidos.PedidosFragmento;
+import com.example.proyecto_movil1.Tranking.FragmentoMapa;
 import com.example.proyecto_movil1.Tranking.FragmentoPedidosRepartidor;
 import com.example.proyecto_movil1.categorias.CrearCategorias;
 import com.example.proyecto_movil1.categorias.CrearProductos;
@@ -107,8 +108,8 @@ public class Categoria_Fragmento extends Fragment implements View.OnClickListene
 
                 }else{
 
-                    FragmentoMapa.setLatitud_map( Double.parseDouble( MainActivity.getLatitud() ) );
-                    FragmentoMapa.setLongitud_map( Double.parseDouble( MainActivity.getLongitud()) );
+                    FragmentoMapa.setLatitud_map( Double.parseDouble( MainActivity.getLatitudGuardada() ) );
+                    FragmentoMapa.setLongitud_map( Double.parseDouble( MainActivity.getLongitudGuardada()) );
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new FragmentoMapa()).commit();
 
                 }
