@@ -172,7 +172,7 @@ public class MostrarProductos extends Fragment  {
                                 }
 
                             } else { //If the response is not valid, the request also failed
-                                Toast.makeText(getActivity().getApplicationContext(), "Sin Datos", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getActivity().getApplicationContext(), "Sin Datos", Toast.LENGTH_SHORT).show();
 
                                 //Log.e("ErrorOnRequest", "The server responded correctly, but with an empty array!");
                             }
