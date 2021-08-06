@@ -44,7 +44,7 @@ public class ListAdapterPedidosRepartidor extends ArrayAdapter {
         Modelo_Repartidor modelo = mLista.get(position);
 
         TextView nom = view.findViewById( R.id.NombrePedido );
-        nom.setText( modelo.getNombre() );
+        nom.setText( modelo.getPedidos() );
 
         TextView fecha = view.findViewById(R.id.fechaPedido );
         fecha.setText(modelo.getFecha());

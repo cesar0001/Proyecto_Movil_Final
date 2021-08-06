@@ -53,6 +53,7 @@ public class MisPedidos extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                informacionPedidos.id_pedidos = mLista.get( position ).getPedido();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new informacionPedidos()).commit();
 
 
@@ -105,7 +106,7 @@ public class MisPedidos extends Fragment {
 
                                         modelo.setPedido( jsonObject.getString( "id_pedido" ) );
                                         modelo.setFecha( jsonObject.getString( "fecha" ) );
-                                         modelo.setStatus(jsonObject.getString("descripcion"));
+                                        modelo.setStatus(jsonObject.getString("descripcion"));
 
                                         mLista.add(modelo);
 

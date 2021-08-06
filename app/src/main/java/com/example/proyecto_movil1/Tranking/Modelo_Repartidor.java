@@ -2,26 +2,25 @@ package com.example.proyecto_movil1.Tranking;
 
 public class Modelo_Repartidor {
 
-    private String nombre;
+    private String pedidos;
     private String fecha;
     private String status;
 
     public Modelo_Repartidor() {
     }
 
-
-    public Modelo_Repartidor(String nombre, String fecha, String status) {
-        this.nombre = nombre;
+    public Modelo_Repartidor(String pedidos, String fecha, String status) {
+        this.pedidos = pedidos;
         this.fecha = fecha;
         this.status = status;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getPedidos() {
+        return pedidos;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setPedidos(String pedidos) {
+        this.pedidos = pedidos;
     }
 
     public String getFecha() {
