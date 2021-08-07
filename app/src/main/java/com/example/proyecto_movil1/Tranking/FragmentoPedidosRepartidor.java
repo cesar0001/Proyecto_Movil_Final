@@ -53,6 +53,8 @@ public class FragmentoPedidosRepartidor extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 informacionPedidos.id_pedidos = mLista.get( position ).getPedido();
+                //informacionPedidos.latitud_info = mLista.get( position ).getLatitud();
+                //informacionPedidos.longitud_info = mLista.get( position ).getLongitud();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new informacionPedidos()).commit();
 
 
@@ -115,7 +117,7 @@ public class FragmentoPedidosRepartidor extends Fragment {
 
         JSONObject json = new JSONObject();
         try {
-            json.put("id_usuario", 25 );
+            json.put("id_usuario", MainActivity.getUsuario() );
         } catch( JSONException e){
             Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
 
