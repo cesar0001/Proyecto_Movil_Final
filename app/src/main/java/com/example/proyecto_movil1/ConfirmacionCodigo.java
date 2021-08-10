@@ -181,7 +181,7 @@ public class ConfirmacionCodigo extends AppCompatActivity {
                 //Cuerpo
                 String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                 String cuerpo = "Que tenga buenos dias, "+getNombreCC() + " se le saluda de parte de el supermercado" +
-                        " el econimico. \n\n este es su codigo actual que se le a enviado a la hora "+currentDateTimeString+"" +
+                        " el economico. \n\n este es su codigo actual que se le a enviado a la hora "+currentDateTimeString+"" +
                         " para poder registrarse. \n\nCodigo: "+ String.valueOf( numeroRandom );
 
                 mimeMessage.setContent( cuerpo, "text/html; charset=utf-8" );

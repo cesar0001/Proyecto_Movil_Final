@@ -97,7 +97,7 @@ public class Usuarios extends AppCompatActivity {
                 //Cuerpo
                 String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                 String cuerpo = "Que tenga buenos dias, se le saluda de parte de el supermercado" +
-                        " el econimico. \n\n este es su contraseña actual que se le a enviado a esta hora "+currentDateTimeString+"" +
+                        " el economico. \n\n este es su contraseña actual que se le a enviado a esta hora "+currentDateTimeString+"" +
                         " \n\nEsta Opcion esta en modo Beta.";
 
                 mimeMessage.setContent( cuerpo, "text/html; charset=utf-8" );
