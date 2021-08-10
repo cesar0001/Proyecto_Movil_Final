@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.proyecto_movil1.R;
 import com.google.android.material.textfield.TextInputLayout;
+
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -96,15 +98,18 @@ public class Usuarios extends AppCompatActivity {
                 String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
                 String cuerpo = "Que tenga buenos dias, se le saluda de parte de el supermercado" +
                         " el econimico. \n\n este es su contraseña actual que se le a enviado a esta hora "+currentDateTimeString+"" +
-                        " \n\nContraseña: "+ "12345";
+                        " \n\nEsta Opcion esta en modo Beta.";
 
                 mimeMessage.setContent( cuerpo, "text/html; charset=utf-8" );
                 Transport.send( mimeMessage );
+
             }
 
         } catch (MessagingException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
+
+        Toast.makeText( getApplicationContext(),"Correo enviado exitosamente!!!",Toast.LENGTH_SHORT ).show();
 
 
     }
