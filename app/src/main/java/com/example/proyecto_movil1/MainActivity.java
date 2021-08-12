@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -46,6 +47,9 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    SharedPreferences shp;
+    SharedPreferences.Editor shpEditor;
+
     TextInputLayout txtnombre, txtPassword;
 
     public static String nombre ="";
@@ -83,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
         txtPassword = (TextInputLayout) findViewById(R.id.txtPassword);
 
         snackbar_layout = (CoordinatorLayout)findViewById(R.id.snackbar_layout1);
+
+        shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
+        CheckLogin();
 
         findViewById(R.id.btnIniciarSesion).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +133,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+    public void CheckLogin() {
+        if (shp == null)
+            shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
+
+        String userName = shp.getString("name", "");
+
+        if (userName != null && !userName.equals("")) {
+            Intent i = new Intent(this, DashBoard.class);
+            startActivity(i);
+            finish();
+        }
+    }
+
+    public void DoLogin(String userid, String password) {
+        try {
+            //if (password.equals("12")) {
+                if (shp == null)
+                    shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
+
+                Toast.makeText( getApplicationContext(),userid,Toast.LENGTH_SHORT ).show();
+                shpEditor = shp.edit();
+                shpEditor.putString("name", userid);
+                shpEditor.commit();
+
+                Intent i = new Intent(this, DashBoard.class);
+                startActivity(i);
+                finish();
+            //} else {
+                //txtInfo.setText("Invalid Credentails");
+            //}
+        } catch (Exception ex) {
+            //txtInfo.setText(ex.getMessage().toString());
+        }
+    }
 
 
     public void clickRecuperarPassword(View view){
@@ -172,8 +215,11 @@ public class MainActivity extends AppCompatActivity {
 
                             if (txtnombre.getEditText().getText().toString().equals( getUsuario() ) && txtPassword.getEditText().getText().toString().equals( getContraseña() )) {
                                 snackbar( "Contraseña correcta" );
-                                Intent i = new Intent(MainActivity.this,DashBoard.class);
-                                startActivity( i );
+
+                                DoLogin(txtnombre.getEditText().getText().toString(), txtPassword.getEditText().getText().toString());
+                                //Intent i = new Intent(MainActivity.this,DashBoard.class);
+                                //startActivity( i );
+                                //finish();
                             } else {
                                 snackbar( "Contraseña incorrecta" );
                             }

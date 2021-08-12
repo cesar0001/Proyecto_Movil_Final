@@ -33,5 +33,13 @@
 
     </item>
 
+    <item
+        android:id="@+id/cerrar_sesion"
+        android:icon="@drawable/cerrar_sesion"
+        android:title="Sign off">
+
+
+    </item>
+
 
 </menu>

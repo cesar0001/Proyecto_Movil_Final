@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.proyecto_movil1.Creditos.Creditos;
 import com.example.proyecto_movil1.Pedidos.MisPedidos;
@@ -19,6 +22,9 @@ public class DashBoard extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
+    SharedPreferences shp;
+    SharedPreferences.Editor shpEditor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +32,9 @@ public class DashBoard extends AppCompatActivity {
         setContentView( R.layout.activity_dash_board );
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new Categoria_Fragmento()).commit();
+
+        shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
+        CheckLogin();
 
         bottomNavigationView = findViewById(R.id.ButtonNavigation);;
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -47,6 +56,10 @@ public class DashBoard extends AppCompatActivity {
                     case R.id.item4:
                         fragment= new MisPedidos();
                         break;
+
+                    case R.id.cerrar_sesion:
+                        Logout();
+                        break;
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,fragment).commit();
@@ -57,4 +70,39 @@ public class DashBoard extends AppCompatActivity {
 
 
     }
+
+    public void CheckLogin() {
+        if (shp == null)
+            shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
+
+
+        String userName = shp.getString("name", "");
+
+        if (userName != null && !userName.equals("")) {
+
+        } else
+        {
+            Intent i = new Intent(DashBoard.this, MainActivity.class);
+            startActivity(i);
+            finish();
+        }
+    }
+    public void Logout() {
+        try {
+            if (shp == null)
+                shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
+
+            shpEditor = shp.edit();
+            shpEditor.putString("name", "");
+            shpEditor.commit();
+
+            Intent i = new Intent(DashBoard.this, MainActivity.class);
+            startActivity(i);
+            finish();
+
+        } catch (Exception ex) {
+            Toast.makeText(this, ex.getMessage().toString(), Toast.LENGTH_LONG).show();
+        }
+    }
+
 }
