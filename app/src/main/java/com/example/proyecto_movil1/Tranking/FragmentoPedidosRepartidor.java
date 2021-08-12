@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
@@ -117,7 +119,7 @@ public class FragmentoPedidosRepartidor extends Fragment {
 
         JSONObject json = new JSONObject();
         try {
-            json.put("id_usuario", MainActivity.getUsuario() );
+            json.put("id_usuario", MainActivity.getId_usuario() );
         } catch( JSONException e){
             Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -152,6 +154,8 @@ public class FragmentoPedidosRepartidor extends Fragment {
                                         modelo.setPedido( jsonObject.getString( "id_pedido" ) );
                                         modelo.setFecha( jsonObject.getString( "fecha" ) );
                                         modelo.setStatus(jsonObject.getString("descripcion"));
+
+                                        System.out.println(modelo.getFecha());
 
                                         mLista.add(modelo);
 

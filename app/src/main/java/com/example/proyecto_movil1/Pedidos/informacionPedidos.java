@@ -1,6 +1,7 @@
 package com.example.proyecto_movil1.Pedidos;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -21,10 +22,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
- import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.proyecto_movil1.Categoria_Fragmento;
+import com.example.proyecto_movil1.DashBoard;
 import com.example.proyecto_movil1.MainActivity;
 import com.example.proyecto_movil1.R;
+import com.example.proyecto_movil1.Tranking.FragmentoPedidosRepartidor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +37,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -49,6 +55,8 @@ public class informacionPedidos extends Fragment {
     public static String latitud_info;
     public static String longitud_info;
 
+    TextView can;
+
 //xml se llama lista productos para adaptador
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +67,27 @@ public class informacionPedidos extends Fragment {
         total = viewGroup.findViewById( R.id.textoTotalIP );
         btnUbicacion = viewGroup.findViewById( R.id.btndelivery );
 
+        can = viewGroup.findViewById( R.id.cancelarPedido );
+
+        if(MainActivity.getTipo_usuario().equals( "Repartidor" )){
+            can.setText( "Entregar pedido" );
+
+        }else{
+            can.setBackgroundColor( Color.parseColor("#5EA796") );
+            can.setText( "" );
+        }
+
+        can.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Toast.makeText( getContext(),"asd",Toast.LENGTH_SHORT ).show();
+                if(can.getText().equals( "Entregar pedido" )){
+                    Entregar();
+                }
+
+
+            }
+        } );
 
         //http://167.99.158.191/Api_pedidos_ProyectoFinal/pedidos/getDetallePedido.php
         //{"id_pedido":12}
@@ -169,6 +198,49 @@ public class informacionPedidos extends Fragment {
 
 
     }
+
+
+    private void Entregar(){
+
+
+        String url = "http://167.99.158.191/Api_pedidos_ProyectoFinal/pedidos/entregarPedido.php";
+
+
+        HashMap<String, String> params = new HashMap<String, String>();
+
+        params.put("id_pedido",id_pedidos );
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest( url, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Toast.makeText( getContext(),"Pedido entregado.",Toast.LENGTH_SHORT ).show();
+
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new Categoria_Fragmento()).commit();
+
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // VolleyLog.d("Error", "Error: " + error.getMessage());
+                //Toast.makeText( getContext(),error.getMessage(),Toast.LENGTH_SHORT ).show();
+                Toast.makeText( getContext(),"Pedido entregado.",Toast.LENGTH_SHORT ).show();
+
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new Categoria_Fragmento()).commit();
+
+
+            }
+        });
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
 
 }
 

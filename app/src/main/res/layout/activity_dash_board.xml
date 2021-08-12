@@ -27,7 +27,7 @@
         android:background="@drawable/rounds_corners"
         app:itemIconTint="@color/icons_colors"
         app:itemRippleColor="@color/fondo"
-        app:itemTextColor="@color/black"
+        app:itemTextColor="@color/white"
         app:menu="@menu/menu" />
 
 </RelativeLayout>
