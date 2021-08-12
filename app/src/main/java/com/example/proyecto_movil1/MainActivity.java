@@ -156,6 +156,8 @@ public class MainActivity extends AppCompatActivity {
 
                 shpEditor = shp.edit();
                 shpEditor.putString("name", userid);
+                shpEditor.putString("guardar_usuario", getUsuario());
+                shpEditor.putString("guardar_contraseña", getContraseña());
                 shpEditor.commit();
 
                 Intent i = new Intent(this, DashBoard.class);

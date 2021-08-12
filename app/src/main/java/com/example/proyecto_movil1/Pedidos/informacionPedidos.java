@@ -277,7 +277,7 @@ public class informacionPedidos extends Fragment {
         HashMap<String, String> params = new HashMap<String, String>();
 
         params.put("id_pedido",id_pedidos );
-        params.put("calificacion",calificador );
+        params.put("calificacion","5" );
 
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest( url, new JSONObject(params),
@@ -296,7 +296,7 @@ public class informacionPedidos extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 // VolleyLog.d("Error", "Error: " + error.getMessage());
                 //Toast.makeText( getContext(),error.getMessage(),Toast.LENGTH_SHORT ).show();
-                Toast.makeText( getContext(),"Error Pedido Calificado.",Toast.LENGTH_SHORT ).show();
+                Toast.makeText( getContext(),"Error Pedido Calificado. "+error.getMessage(),Toast.LENGTH_SHORT ).show();
 
                 //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new Categoria_Fragmento()).commit();
                 //dialogA.dismiss();
