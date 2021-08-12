@@ -154,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
                 if (shp == null)
                     shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
 
-                Toast.makeText( getApplicationContext(),userid,Toast.LENGTH_SHORT ).show();
                 shpEditor = shp.edit();
                 shpEditor.putString("name", userid);
                 shpEditor.commit();

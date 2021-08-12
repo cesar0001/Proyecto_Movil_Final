@@ -47,9 +47,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:columnCount="2"
+                android:layout_gravity="center"
                 android:layout_marginTop="-80dp"
                 android:padding="5dp"
-                android:layout_marginLeft="33dp"
+                android:layout_marginLeft="20dp"
                 >
 
                 <androidx.cardview.widget.CardView

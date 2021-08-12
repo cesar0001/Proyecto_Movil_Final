@@ -54,6 +54,7 @@ public class MisPedidos extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 informacionPedidos.id_pedidos = mLista.get( position ).getPedido();
+                informacionPedidos.status_pedido = mLista.get( position ).getStatus();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new informacionPedidos()).commit();
 
 
@@ -121,7 +122,7 @@ public class MisPedidos extends Fragment {
                                 }
 
                             } else { //If the response is not valid, the request also failed
-                                Toast.makeText(getActivity().getApplicationContext(), "Sin Datos", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity().getApplicationContext(), "Sin Pedidos", Toast.LENGTH_SHORT).show();
 
                                 //Log.e("ErrorOnRequest", "The server responded correctly, but with an empty array!");
                             }

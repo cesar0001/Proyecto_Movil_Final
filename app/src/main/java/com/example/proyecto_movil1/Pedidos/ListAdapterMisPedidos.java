@@ -43,7 +43,7 @@ public class ListAdapterMisPedidos extends ArrayAdapter {
 
 
         TextView nombre = view.findViewById(R.id.Name_product );
-        nombre.setText(modelo.getPedido());
+        nombre.setText("Pedido #"+modelo.getPedido());
 
         TextView fecha = view.findViewById(R.id.Cantidad_p );
         fecha.setText(modelo.getFecha());

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +56,10 @@ public class informacionPedidos extends Fragment {
     public static String id_pedidos;
     public static String latitud_info;
     public static String longitud_info;
+    public static String status_pedido;
+
+    String calificador="";
+    AlertDialog dialogA;
 
     TextView can;
 
@@ -73,8 +79,14 @@ public class informacionPedidos extends Fragment {
             can.setText( "Entregar pedido" );
 
         }else{
-            can.setBackgroundColor( Color.parseColor("#5EA796") );
-            can.setText( "" );
+            //can.setBackgroundColor( Color.parseColor("#5EA796") );
+            if(status_pedido.equals( "ENTREGADO" )){
+                can.setText( "Calificar Pedido" );
+            }else{
+                can.setBackgroundColor( Color.parseColor("#5EA796") );
+                can.setText( "" );
+            }
+
         }
 
         can.setOnClickListener( new View.OnClickListener() {
@@ -83,6 +95,12 @@ public class informacionPedidos extends Fragment {
                 // Toast.makeText( getContext(),"asd",Toast.LENGTH_SHORT ).show();
                 if(can.getText().equals( "Entregar pedido" )){
                     Entregar();
+                }
+
+                if(status_pedido.equals( "ENTREGADO" )){
+                    if(can.getText().equals( "Calificar Pedido" )){
+                        Rating();
+                    }
                 }
 
 
@@ -114,6 +132,57 @@ public class informacionPedidos extends Fragment {
         BusquedadPedidosProductos();
 
         return viewGroup;
+    }
+
+
+    private void Rating(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.custom_dialog,null);
+        builder.setView(view);
+
+        dialogA = builder.create();
+        dialogA.show();
+
+
+
+        Button btnAc = view.findViewById(R.id.btnCalificadorR);
+        btnAc.setText("Evaluacion");
+        btnAc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getContext(),"Click en aceptar ",Toast.LENGTH_SHORT).show();
+                CalificarPedido();
+
+            }
+        });
+
+
+        Button btnCa = view.findViewById(R.id.btncancelarR);
+        btnCa.setText("Cancelar");
+        btnCa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getContext(),"Click en Cancelar",Toast.LENGTH_SHORT).show();
+                dialogA.dismiss();
+            }
+        });
+
+
+        TextView caja = view.findViewById( R.id.cajaEvaluador );
+
+        RatingBar ratingBar = view.findViewById(R.id.ratingbar);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                //Toast.makeText(getApplicationContext(),"rating"+String.valueOf(v),Toast.LENGTH_SHORT).show();
+                caja.setText( String.valueOf(v) );
+                calificador = String.valueOf(v);
+            }
+        });
+
+
     }
 
     private void BusquedadPedidosProductos() {
@@ -196,6 +265,48 @@ public class informacionPedidos extends Fragment {
         }
 
 
+
+    }
+
+    private void CalificarPedido(){
+
+
+        String url = "http://167.99.158.191/Api_pedidos_ProyectoFinal/pedidos/calificarPedido.php";
+
+
+        HashMap<String, String> params = new HashMap<String, String>();
+
+        params.put("id_pedido",id_pedidos );
+        params.put("calificacion",calificador );
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest( url, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Toast.makeText( getContext(),"Pedido Calificado.",Toast.LENGTH_SHORT ).show();
+
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new Categoria_Fragmento()).commit();
+                        dialogA.dismiss();
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // VolleyLog.d("Error", "Error: " + error.getMessage());
+                //Toast.makeText( getContext(),error.getMessage(),Toast.LENGTH_SHORT ).show();
+                Toast.makeText( getContext(),"Error Pedido Calificado.",Toast.LENGTH_SHORT ).show();
+
+                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new Categoria_Fragmento()).commit();
+                //dialogA.dismiss();
+
+            }
+        });
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(jsonObjectRequest);
 
     }
 
