@@ -60,6 +60,23 @@
                 />
 
 
+            <RatingBar
+                android:id="@+id/ratingBarpedidos"
+                android:layout_width="232dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="20dp"
+                android:isIndicator="true"
+                android:layout_gravity="center"
+                android:numStars="5"
+                android:rating="0.0"
+                android:stepSize="0.25"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+
         </LinearLayout>
 
     </LinearLayout>

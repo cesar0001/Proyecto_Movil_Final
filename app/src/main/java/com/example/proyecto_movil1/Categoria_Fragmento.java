@@ -1,6 +1,8 @@
 package com.example.proyecto_movil1;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -10,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.proyecto_movil1.Carrito.CarritoCompra;
@@ -20,9 +23,12 @@ import com.example.proyecto_movil1.Tranking.FragmentoPedidosRepartidor;
 import com.example.proyecto_movil1.categorias.CrearCategorias;
 import com.example.proyecto_movil1.categorias.CrearProductos;
 import com.example.proyecto_movil1.categorias.MostrarCategorias;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Categoria_Fragmento extends Fragment implements View.OnClickListener{
 
@@ -34,6 +40,10 @@ public class Categoria_Fragmento extends Fragment implements View.OnClickListene
     private CardView cardCrearProducto;
     private TextView mydashboard;
 
+    private CircleImageView circleImageView;
+
+    AlertDialog dialogA;
+
     public static List<CarritoCompra> Carrito_Compras = new ArrayList<>();
 
     @Override
@@ -42,8 +52,19 @@ public class Categoria_Fragmento extends Fragment implements View.OnClickListene
         // Inflate the layout for this fragment
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_categoria_fragmento, container, false);
 
+        circleImageView = viewGroup.findViewById( R.id.profile_image );
+        circleImageView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VistaPerfil();
+            }
+        } );
+
+        Picasso.with(getContext()).load(MainActivity.getUrl_foto()).into(circleImageView);
+
         mydashboard = viewGroup.findViewById( R.id.myDashboard );
         mydashboard.setText( "Bienvenido " + MainActivity.getNombre()+"!!!" );
+        //Toast.makeText( getContext(),MainActivity.getNombre(),Toast.LENGTH_SHORT ).show();
 
         cardProductos = viewGroup.findViewById( R.id.cardProductos );
         cardProductos.setOnClickListener( this::onClick );
@@ -162,6 +183,63 @@ public class Categoria_Fragmento extends Fragment implements View.OnClickListene
     }
 
 
+    private void VistaPerfil(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setCancelable( false );
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.custom_dialog_perfil,null);
+        builder.setView(view);
+
+        dialogA = builder.create();
+        dialogA.show();
+
+
+
+        Button btnAc = view.findViewById(R.id.btnUbicacionMiPerfil );
+        btnAc.setText("Ubicacion");
+        btnAc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getContext(),"Click en aceptar ",Toast.LENGTH_SHORT).show();
+                String geoUri = "http://maps.google.com/maps?q=loc:" + MainActivity.getLatitudGuardada() + "," + MainActivity.getLongitudGuardada() + " (" + "My Ubicacion" + ")";
+                Uri location = Uri.parse(geoUri);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+                startActivity(mapIntent);
+
+            }
+        });
+
+
+        Button btnCa = view.findViewById(R.id.btncancelarR );
+        btnCa.setText("Cerrar");
+        btnCa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getContext(),"Click en Cancelar",Toast.LENGTH_SHORT).show();
+                dialogA.dismiss();
+            }
+        });
+
+
+        TextView Nombre = view.findViewById( R.id.miPerfiltxtNombre );
+        Nombre.setText( MainActivity.getNombre() );
+
+        TextView correo = view.findViewById( R.id.miPerfiltxtCorreo );
+        correo.setText( MainActivity.getCorreo() );
+
+        TextView telefono = view.findViewById( R.id.miPerfiltxtTelefono );
+        telefono.setText( "Tel: "+MainActivity.getTelefono() );
+
+        TextView direccion = view.findViewById( R.id.miPerfiltxtDireccion );
+        direccion.setText( "Direccion: " + MainActivity.getDireccion() );
+
+        CircleImageView imagen = view.findViewById( R.id.IMGPerfil );
+        Picasso.with(getContext()).load(MainActivity.getUrl_foto()).into(imagen);
+
+
+
+    }
 
 
 

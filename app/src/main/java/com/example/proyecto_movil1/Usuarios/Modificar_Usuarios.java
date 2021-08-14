@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
@@ -25,10 +26,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.proyecto_movil1.Categoria_Fragmento;
 
-import com.example.proyecto_movil1.DashBoard;
-import com.example.proyecto_movil1.MainActivity;
+ import com.example.proyecto_movil1.MainActivity;
 import com.example.proyecto_movil1.R;
 import com.google.android.material.textfield.TextInputLayout;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,7 +44,7 @@ public class Modificar_Usuarios extends Fragment {
     private Button btn;
 
     static final int RESULT_GALLERY_IMG = 100;
-    Bitmap photo = null;
+    private Bitmap photo = null;
     ImageView imageView;
 
     @Override
@@ -76,11 +77,13 @@ public class Modificar_Usuarios extends Fragment {
             }
         } );
 
+        llenarCampos();
+
 
         return viewGroup;
     }
 
-    public String GetStringImage(Bitmap imagen) {
+    public String GetStringImage(@NonNull Bitmap imagen) {
         ByteArrayOutputStream ba = new ByteArrayOutputStream();
         imagen.compress( Bitmap.CompressFormat.JPEG, 100, ba );
         byte[] imagebyte = ba.toByteArray();
@@ -88,9 +91,22 @@ public class Modificar_Usuarios extends Fragment {
         return "data:image/png;base64," + encode;
     }
 
+    private void llenarCampos(){
+
+        Picasso.with(getContext()).load(MainActivity.getUrl_foto()).into(imageView);
+        txtuser.getEditText().setText( MainActivity.getNombre() );
+        txttelefono.getEditText().setText( MainActivity.getTelefono() );
+        txtdireccion.getEditText().setText( MainActivity.getDireccion() );
+        txtcontra.getEditText().setText( MainActivity.getContraseña() );
+        txtcorreo.getEditText().setText( MainActivity.getCorreo() );
+
+
+    }
+
     public void validacion(){
         if (photo == null) {
             AlertaDialogo( "Ingrese la foto","Foto" );
+            photo = null;
         } else {
             if (txtuser.getEditText().getText().toString().trim().length() == 0) {
                 txtuser.setError( "Ingrese este campo" );
@@ -135,8 +151,12 @@ public class Modificar_Usuarios extends Fragment {
                 .setPositiveButton( "Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new Categoria_Fragmento()).commit();
-                        dialog.cancel();
+
+                        if(photo!=null){
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new Categoria_Fragmento()).commit();
+                            dialog.cancel();
+                        }
+
                     }
                 } );
 
@@ -187,12 +207,13 @@ public class Modificar_Usuarios extends Fragment {
         }
 
          */
+        String variable = GetStringImage( photo );
 
         params.put("nombres", txtuser.getEditText().getText().toString().toLowerCase());
         params.put("telefonos", txttelefono.getEditText().getText().toString());
         params.put("latitud", MainActivity.getLatitud());
         params.put("longitud", MainActivity.getLongitud());
-        params.put("url_foto", GetStringImage( photo ));
+        params.put("url_foto", variable);
         params.put("correo", txtcorreo.getEditText().getText().toString());
         params.put("direccion", txtdireccion.getEditText().getText().toString());
         params.put("id_usuario", MainActivity.getId_usuario());
@@ -257,12 +278,26 @@ public class Modificar_Usuarios extends Fragment {
                             MainActivity.setLongitudGuardada( jsonObject.getString( "longitud" ) );
                             MainActivity.setNombre(  jsonObject.getString( "nombres" ) );
 
+                            MainActivity.setNombre( jsonObject.getString( "nombres" )  );
+                            MainActivity.setId_usuario( jsonObject.getString( "id_usuario" ) );
+                            MainActivity.setTelefono( jsonObject.getString( "telefono" ) );
+                            MainActivity.setLatitud( jsonObject.getString( "latitud" ) );
+                            MainActivity.setLongitud( jsonObject.getString( "longitud" ) );
+                            MainActivity.setDireccion( jsonObject.getString( "direccion" ) );
+                            MainActivity.setUrl_foto( jsonObject.getString( "url_foto" ) );
+                            MainActivity.setUsuario( jsonObject.getString( "usuario" ) );
+                            MainActivity.setContraseña( jsonObject.getString( "contrasenia" ) );
+                            MainActivity.setCorreo( jsonObject.getString( "correo" ) );
+                            MainActivity.setTipo_usuario( jsonObject.getString( "descripcion" ) );
+
+
+                            AlertaDialogo( "Informacion Modificada Exitosamente!!!","Registro" );
+
                         } catch (JSONException e) {
                             //snackbar( "Contraseña incorrecta" );
                             //Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
-                        AlertaDialogo( "Informacion Modificada Exitosamente!!!","Registro" );
 
 
 

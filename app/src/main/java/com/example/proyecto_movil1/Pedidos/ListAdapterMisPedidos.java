@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,6 +51,12 @@ public class ListAdapterMisPedidos extends ArrayAdapter {
 
         TextView status = view.findViewById(R.id.misstatus);
         status.setText(modelo.getStatus());
+
+        RatingBar calificador = view.findViewById( R.id.ratingBarpedidos );
+        //calificador.setVisibility( View.GONE );
+        float valor = (Float.parseFloat( modelo.getCalificacion() )  );
+        calificador.setRating( valor );
+
 
         //return super.getView(position, convertView, parent);
         return view;

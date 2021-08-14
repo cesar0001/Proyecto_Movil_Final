@@ -22,71 +22,87 @@
                 android:id="@+id/topArea"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
-                android:background="@color/gris"
-                 >
+                android:background="@drawable/gradient"
+
+                >
 
 
                 <TextView
                     android:id="@+id/myDashboard"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="272dp"
+                    android:layout_height="56dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="11dp"
+                    android:layout_marginRight="11dp"
+                    android:layout_marginBottom="20dp"
                     android:text="Bienvenido Cesar"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:layout_margin="20dp"
                     android:textColor="@android:color/white"
-                    />
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
-
-
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="99dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="11dp"
+                    android:layout_marginRight="11dp"
+                    android:layout_marginBottom="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/logo"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
 
             </RelativeLayout>
 
             <GridLayout
-                android:layout_width="match_parent"
+                android:layout_width="353dp"
                 android:layout_height="match_parent"
-                android:columnCount="2"
                 android:layout_gravity="center"
                 android:layout_marginTop="-80dp"
-                android:padding="5dp"
-                android:layout_marginLeft="20dp"
-                >
+                android:columnCount="2"
+                android:padding="5dp">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardProductos"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
-                    app:cardElevation="7dp"
                     app:cardCornerRadius="10dp"
-                    >
+                    app:cardElevation="7dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:layout_margin="2dp"
-                        android:padding="10dp"
-                        >
+                        android:orientation="vertical"
+                        android:padding="10dp">
 
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:src="@drawable/dairy_products"
                             android:layout_gravity="center_horizontal|center_vertical"
+                            android:src="@drawable/dairy_products"
 
                             />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
                             android:text="Productos"
                             android:textSize="15sp"
-                            android:layout_gravity="center_horizontal"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
                     </LinearLayout>
-
 
 
                 </androidx.cardview.widget.CardView>
@@ -96,105 +112,99 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
-                    app:cardElevation="7dp"
                     app:cardCornerRadius="10dp"
-                    >
+                    app:cardElevation="7dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:layout_margin="2dp"
-                        android:padding="10dp"
-                        >
+                        android:orientation="vertical"
+                        android:padding="10dp">
 
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:src="@drawable/online_order"
                             android:layout_gravity="center_horizontal|center_vertical"
+                            android:src="@drawable/online_order"
 
                             />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
                             android:text="Pedido/ordenes"
                             android:textSize="15sp"
-                            android:layout_gravity="center_horizontal"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardPedidos_Repartidor"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
-                    app:cardElevation="7dp"
                     app:cardCornerRadius="10dp"
-                    >
+                    app:cardElevation="7dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:layout_margin="2dp"
-                        android:padding="10dp"
-                        >
+                        android:orientation="vertical"
+                        android:padding="10dp">
 
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:src="@drawable/tracking"
                             android:layout_gravity="center_horizontal|center_vertical"
+                            android:src="@drawable/tracking"
 
                             />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
                             android:text="Tracking"
                             android:textSize="15sp"
-                            android:layout_gravity="center_horizontal"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardProductRecom"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
-                    app:cardElevation="7dp"
                     app:cardCornerRadius="10dp"
-                    >
+                    app:cardElevation="7dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:layout_margin="2dp"
-                        android:padding="10dp"
-                        >
+                        android:orientation="vertical"
+                        android:padding="10dp">
 
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:src="@drawable/recommend"
                             android:layout_gravity="center_horizontal|center_vertical"
+                            android:src="@drawable/recommend"
 
                             />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
                             android:text="Recomendados"
                             android:textSize="15sp"
-                            android:layout_gravity="center_horizontal"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
                     </LinearLayout>
 
 
@@ -240,39 +250,35 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
-                    app:cardElevation="7dp"
                     app:cardCornerRadius="10dp"
-                    >
+                    app:cardElevation="7dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:layout_margin="2dp"
-                        android:padding="10dp"
-                        >
+                        android:orientation="vertical"
+                        android:padding="10dp">
 
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:src="@drawable/adprod"
                             android:layout_gravity="center_horizontal|center_vertical"
+                            android:src="@drawable/adprod"
 
                             />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
                             android:text="Añadir Productos"
                             android:textSize="15sp"
-                            android:layout_gravity="center_horizontal"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
                     </LinearLayout>
 
 
                 </androidx.cardview.widget.CardView>
-
 
 
             </GridLayout>

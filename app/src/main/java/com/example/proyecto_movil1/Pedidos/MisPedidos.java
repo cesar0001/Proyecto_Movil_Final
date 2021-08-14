@@ -55,6 +55,13 @@ public class MisPedidos extends Fragment {
 
                 informacionPedidos.id_pedidos = mLista.get( position ).getPedido();
                 informacionPedidos.status_pedido = mLista.get( position ).getStatus();
+
+                informacionPedidos.nombre_pedido = mLista.get( position ).getNombre();
+                informacionPedidos.correo_pedido = mLista.get( position ).getCorreo();
+                informacionPedidos.telefono_pedido = mLista.get( position ).getTelefono();
+                informacionPedidos.direccion_pedido = mLista.get( position ).getDireccion();
+                informacionPedidos.url_pedido = mLista.get( position ).getUrl_foto();
+
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new informacionPedidos()).commit();
 
 
@@ -108,6 +115,13 @@ public class MisPedidos extends Fragment {
                                         modelo.setPedido( jsonObject.getString( "id_pedido" ) );
                                         modelo.setFecha( jsonObject.getString( "fecha" ) );
                                         modelo.setStatus(jsonObject.getString("descripcion"));
+                                        modelo.setCalificacion( jsonObject.getString( "calificacion" ) );
+                                        modelo.setCorreo( jsonObject.getString( "correo" ) );
+                                        modelo.setNombre( jsonObject.getString( "nombres" ) );
+                                        modelo.setDireccion( jsonObject.getString( "direccion" ) );
+                                        modelo.setTelefono( jsonObject.getString( "telefono" ) );
+                                        modelo.setUrl_foto( jsonObject.getString( "url_foto" ) );
+
 
                                         mLista.add(modelo);
 

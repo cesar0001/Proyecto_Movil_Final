@@ -28,10 +28,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.proyecto_movil1.Categoria_Fragmento;
-import com.example.proyecto_movil1.DashBoard;
 import com.example.proyecto_movil1.MainActivity;
 import com.example.proyecto_movil1.R;
-import com.example.proyecto_movil1.Tranking.FragmentoPedidosRepartidor;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +41,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class informacionPedidos extends Fragment {
 
@@ -51,15 +52,23 @@ public class informacionPedidos extends Fragment {
 
     private Button btnUbicacion;
 
+
     TextView total;
 
     public static String id_pedidos;
     public static String latitud_info;
     public static String longitud_info;
     public static String status_pedido;
+    public static String nombre_pedido;
+    public static String correo_pedido;
+    public static String telefono_pedido;
+    public static String direccion_pedido;
+    public static String url_pedido;
+
 
     String calificador="";
     AlertDialog dialogA;
+    AlertDialog dialogInforDetalle;
 
     TextView can;
 
@@ -73,6 +82,7 @@ public class informacionPedidos extends Fragment {
         total = viewGroup.findViewById( R.id.textoTotalIP );
         btnUbicacion = viewGroup.findViewById( R.id.btndelivery );
 
+        /*
         can = viewGroup.findViewById( R.id.cancelarPedido );
 
         if(MainActivity.getTipo_usuario().equals( "Repartidor" )){
@@ -107,16 +117,24 @@ public class informacionPedidos extends Fragment {
             }
         } );
 
+         */
+
         //http://167.99.158.191/Api_pedidos_ProyectoFinal/pedidos/getDetallePedido.php
         //{"id_pedido":12}
         btnUbicacion.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                /*
                 String geoUri = "http://maps.google.com/maps?q=loc:" + latitud_info + "," + longitud_info + " (" + "My Ubicacion" + ")";
                 Uri location = Uri.parse(geoUri);
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
                 startActivity(mapIntent);
 
+                 */
+
+
+                OpcionesParaUsuarios();
             }
         } );
 
@@ -138,6 +156,7 @@ public class informacionPedidos extends Fragment {
     private void Rating(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setCancelable( false );
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.custom_dialog,null);
         builder.setView(view);
@@ -147,7 +166,7 @@ public class informacionPedidos extends Fragment {
 
 
 
-        Button btnAc = view.findViewById(R.id.btnCalificadorR);
+        Button btnAc = view.findViewById(R.id.btnUbicacionMiPerfil );
         btnAc.setText("Evaluacion");
         btnAc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,7 +178,7 @@ public class informacionPedidos extends Fragment {
         });
 
 
-        Button btnCa = view.findViewById(R.id.btncancelarR);
+        Button btnCa = view.findViewById(R.id.btncancelarR );
         btnCa.setText("Cancelar");
         btnCa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,7 +196,7 @@ public class informacionPedidos extends Fragment {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 //Toast.makeText(getApplicationContext(),"rating"+String.valueOf(v),Toast.LENGTH_SHORT).show();
-                caja.setText( String.valueOf(v) );
+                caja.setText( String.valueOf(v) +"/5.0");
                 calificador = String.valueOf(v);
             }
         });
@@ -277,7 +296,9 @@ public class informacionPedidos extends Fragment {
         HashMap<String, String> params = new HashMap<String, String>();
 
         params.put("id_pedido",id_pedidos );
-        params.put("calificacion","5" );
+        params.put("calificacion",  calificador  );
+
+        //Toast.makeText( getContext(),id_pedidos+"   "+calificador,Toast.LENGTH_SHORT ).show();
 
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest( url, new JSONObject(params),
@@ -349,6 +370,110 @@ public class informacionPedidos extends Fragment {
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(jsonObjectRequest);
+
+    }
+
+    private void OpcionesParaUsuarios(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        //builder.setCancelable( false );
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.custom_dialog_informacion_pedido,null);
+        builder.setView(view);
+
+        dialogInforDetalle = builder.create();
+        dialogInforDetalle.show();
+
+
+
+        Button btnAc = view.findViewById(R.id.btnUbicacionMiPerfilPedidos );
+        Button ubicacion = view.findViewById( R.id.btnubicacionRPedidos );
+        ubicacion.setText( "Mi Ubicacion" );
+        ubicacion.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String geoUri = "http://maps.google.com/maps?q=loc:" + latitud_info + "," + longitud_info + " (" + "My Ubicacion" + ")";
+                Uri location = Uri.parse(geoUri);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+                startActivity(mapIntent);
+
+            }
+        } );
+
+        if(MainActivity.getTipo_usuario().equals( "Repartidor" )){
+            btnAc.setText( "Entregar pedido" );
+            ubicacion.setVisibility( View.VISIBLE );
+
+        }else{
+            //can.setBackgroundColor( Color.parseColor("#5EA796") );
+            if(status_pedido.equals( "ENTREGADO" )){
+                btnAc.setText( "Calificar Pedido" );
+            }
+
+            ubicacion.setVisibility( View.GONE );
+
+
+        }
+
+
+        //btnAc.setText("Ubicacion");
+
+
+        btnAc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getContext(),"Click en aceptar ",Toast.LENGTH_SHORT).show();
+                /*
+                String geoUri = "http://maps.google.com/maps?q=loc:" + MainActivity.getLatitudGuardada() + "," + MainActivity.getLongitudGuardada() + " (" + "My Ubicacion" + ")";
+                Uri location = Uri.parse(geoUri);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+                startActivity(mapIntent);
+
+                 */
+
+                if(btnAc.getText().equals( "Entregar pedido" )){
+                    Entregar();
+                }
+
+                if(status_pedido.equals( "ENTREGADO" )){
+                    if(btnAc.getText().equals( "Calificar Pedido" )){
+                        Rating();
+                    }
+                }
+
+                dialogInforDetalle.dismiss();
+
+            }
+        });
+
+
+        Button btnCa = view.findViewById(R.id.buttonClose );
+        btnCa.setText("Cerrar");
+        btnCa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getContext(),"Click en Cancelar",Toast.LENGTH_SHORT).show();
+                dialogInforDetalle.dismiss();
+            }
+        });
+
+
+        TextView Nombre = view.findViewById( R.id.miPerfiltxtNombrePedidos );
+        Nombre.setText( nombre_pedido );
+
+        TextView correo = view.findViewById( R.id.miPerfiltxtCorreoPedidos );
+        correo.setText( correo_pedido );
+
+        TextView telefono = view.findViewById( R.id.miPerfiltxtTelefonoPedidos );
+        telefono.setText( "Tel: " + telefono_pedido );
+
+        TextView direccion = view.findViewById( R.id.miPerfiltxtDireccionPedidos );
+        direccion.setText( "Direccion: " + direccion_pedido );
+
+        CircleImageView imagen = view.findViewById( R.id.IMGPerfilPedidos );
+        Picasso.with(getContext()).load(url_pedido).into(imagen);
+
 
     }
 

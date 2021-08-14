@@ -11,5 +11,6 @@
     <color name="rojo">#E30012</color>
     <color name="amarillo">#F0BA4E</color>
     <color name="gris">#27423D</color>
+    <color name="color_menu">#B921433D</color>
 
 </resources>

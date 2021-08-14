@@ -88,8 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         snackbar_layout = (CoordinatorLayout)findViewById(R.id.snackbar_layout1);
 
-        shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
-        CheckLogin();
+
 
         findViewById(R.id.btnIniciarSesion).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,21 +133,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
+        CheckLogin();
 
-    public void CheckLogin() {
-        if (shp == null)
-            shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
-
-        String userName = shp.getString("name", "");
-
-        if (userName != null && !userName.equals("")) {
-            Intent i = new Intent(this, DashBoard.class);
-            startActivity(i);
-            finish();
-        }
     }
 
-    public void DoLogin(String userid, String password) {
+
+    private void CheckLogin() {
+
+        try {
+
+
+            if (shp == null)
+                shp = getSharedPreferences( "myPreferences", MODE_PRIVATE );
+
+            String userName = shp.getString( "name", "" );
+            String usuario = shp.getString( "guardar_usuario", "" );
+            String contr = shp.getString( "guardar_contraseña", "" );
+
+            if (userName != null && !userName.equals( "" ) ) {
+
+                Intent i = new Intent( this, DashBoard.class );
+                startActivity( i );
+                finish();
+            }
+
+        } catch (Exception e) {
+            Toast.makeText( this, "MainActivity " + e.getMessage().toString(), Toast.LENGTH_LONG ).show();
+        }
+
+    }
+
+    private void DoLogin(String userid) {
         try {
             //if (password.equals("12")) {
                 if (shp == null)
@@ -168,6 +187,8 @@ public class MainActivity extends AppCompatActivity {
             //}
         } catch (Exception ex) {
             //txtInfo.setText(ex.getMessage().toString());
+            Toast.makeText( this, "MainActivity DoLogin" + ex.getMessage().toString(), Toast.LENGTH_LONG ).show();
+
         }
     }
 
@@ -217,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
                             if (txtnombre.getEditText().getText().toString().equals( getUsuario() ) && txtPassword.getEditText().getText().toString().equals( getContraseña() )) {
                                 snackbar( "Contraseña correcta" );
 
-                                DoLogin(txtnombre.getEditText().getText().toString(), txtPassword.getEditText().getText().toString());
+                                DoLogin(txtnombre.getEditText().getText().toString());
                                 //Intent i = new Intent(MainActivity.this,DashBoard.class);
                                 //startActivity( i );
                                 //finish();

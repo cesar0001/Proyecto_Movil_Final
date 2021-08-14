@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ratingbar" />
 
     <Button
-        android:id="@+id/btnCalificadorR"
+        android:id="@+id/btnUbicacionMiPerfil"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -74,6 +74,6 @@
         android:text="Cancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCalificadorR" />
+        app:layout_constraintTop_toBottomOf="@+id/btnUbicacionMiPerfil" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

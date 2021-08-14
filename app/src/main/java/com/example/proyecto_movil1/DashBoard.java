@@ -6,8 +6,12 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -40,8 +44,9 @@ public class DashBoard extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_dash_board );
 
-        shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
-        CheckLogin();
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
 
         bottomNavigationView = findViewById(R.id.ButtonNavigation);;
@@ -66,7 +71,23 @@ public class DashBoard extends AppCompatActivity {
                         break;
 
                     case R.id.cerrar_sesion:
+
+                        /*
+                        new Thread(new Runnable() {
+                            public void run() {
+                                try {
+                                    Logout();
+                                } catch (Exception e) {
+                                    //e.printStackTrace();
+                                    Toast.makeText( getApplicationContext(),"dashboard cerrar "+e.getMessage(),Toast.LENGTH_SHORT ).show();
+                                }
+                            }
+                        }).start();
+
+                         */
+                        fragment= new Categoria_Fragmento();
                         Logout();
+
                         break;
                 }
 
@@ -77,45 +98,79 @@ public class DashBoard extends AppCompatActivity {
         });
 
 
+
+    }
+
+    /*
+    @Override
+    protected void onStart() {
+        super.onStart();
+        CheckLogin();
+
+    }
+
+     */
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
+        CheckLogin();
+
     }
 
     public void CheckLogin() {
-        if (shp == null)
-            shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
+        try {
 
 
-        String userName = shp.getString("name", "");
-        String usuario = shp.getString("guardar_usuario", "");
-        String contr = shp.getString("guardar_contraseña", "");
+            if (shp == null)
+                shp = getSharedPreferences( "myPreferences", MODE_PRIVATE );
 
-        if (userName != null && !userName.equals("")) {
-            //metodo
-            buscarUsuario(usuario, contr);
 
-        } else
-        {
-            Intent i = new Intent(DashBoard.this, MainActivity.class);
-            startActivity(i);
-            finish();
+            String userName = shp.getString( "name", "" );
+            String usuario = shp.getString( "guardar_usuario", "" );
+            String contr = shp.getString( "guardar_contraseña", "" );
+
+            if (userName != null && !userName.equals( "" )) {
+                //metodo
+                 buscarUsuario( usuario, contr );
+
+            } else {
+                Intent i = new Intent( DashBoard.this, MainActivity.class );
+                startActivity( i );
+                finish();
+            }
+        } catch (Exception e) {
+            Toast.makeText( this, e.getMessage().toString(), Toast.LENGTH_LONG ).show();
         }
+
     }
+
+
     public void Logout() {
         try {
             if (shp == null)
-                shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
+                shp = getSharedPreferences( "myPreferences", MODE_PRIVATE );
 
-            shpEditor = shp.edit();
-            shpEditor.putString("name", "");
-            shpEditor.putString("guardar_usuario", "");
-            shpEditor.putString("guardar_contraseña", "");
-            shpEditor.commit();
 
-            Intent i = new Intent(DashBoard.this, MainActivity.class);
-            startActivity(i);
-            finish();
+
+                shpEditor = shp.edit();
+                shpEditor.putString( "name", "" );
+                shpEditor.putString( "guardar_usuario", "" );
+                shpEditor.putString( "guardar_contraseña", "" );
+                shpEditor.commit();
+
+                Intent i = new Intent( DashBoard.this, MainActivity.class );
+                startActivity( i );
+                finish();
+
+
+            //shp = null;
+            //shpEditor = null;
+
 
         } catch (Exception ex) {
-            Toast.makeText(this, ex.getMessage().toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText( this, ex.getMessage().toString(), Toast.LENGTH_LONG ).show();
         }
     }
 
