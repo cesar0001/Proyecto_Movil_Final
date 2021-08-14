@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -43,9 +44,9 @@ public class Modificar_Usuarios extends Fragment {
     private TextInputLayout txtuser, txttelefono,txtdireccion,txtcontra,txtcorreo;
     private Button btn;
 
-    static final int RESULT_GALLERY_IMG = 100;
+    static final int RESULT_GALLERY_IMG1 = 1000;
     private Bitmap photo = null;
-    ImageView imageView;
+    private ImageView imageView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,7 +54,7 @@ public class Modificar_Usuarios extends Fragment {
         // Inflate the layout for this fragment
         ViewGroup viewGroup = (ViewGroup) inflater.inflate( R.layout.fragment_modificar__usuarios, container, false );
 
-        imageView = viewGroup.findViewById( R.id.imgModificar );
+        //imageView = viewGroup.findViewById( R.id.imgModificarA );
         txtuser = viewGroup.findViewById( R.id.txtMuser );
         txttelefono = viewGroup.findViewById( R.id.txttelefonoModi );
         txtdireccion = viewGroup.findViewById( R.id.txtDireccionModi );
@@ -61,11 +62,12 @@ public class Modificar_Usuarios extends Fragment {
         txtcorreo = viewGroup.findViewById( R.id.CorreoCUNModifi );
 
 
-        imageView = viewGroup.findViewById( R.id.imgModificar );
+        imageView = viewGroup.findViewById( R.id.imgModificarA );
         imageView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GaleriaImagenes();
+                //Toast.makeText( getContext(),"sa",Toast.LENGTH_SHORT ).show();
+                 GaleriaImagenes();
             }
         } );
 
@@ -83,7 +85,7 @@ public class Modificar_Usuarios extends Fragment {
         return viewGroup;
     }
 
-    public String GetStringImage(@NonNull Bitmap imagen) {
+    public String GetStringImage(Bitmap imagen) {
         ByteArrayOutputStream ba = new ByteArrayOutputStream();
         imagen.compress( Bitmap.CompressFormat.JPEG, 100, ba );
         byte[] imagebyte = ba.toByteArray();
@@ -168,14 +170,15 @@ public class Modificar_Usuarios extends Fragment {
 
     private void GaleriaImagenes() {
         Intent photoPickerIntent = new Intent( Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI );
-        startActivityForResult( photoPickerIntent, RESULT_GALLERY_IMG );
+        startActivityForResult( photoPickerIntent, RESULT_GALLERY_IMG1 );
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult( requestCode, resultCode, data );
-        Uri imageUri;
-        if (resultCode == getActivity().RESULT_OK && requestCode == RESULT_GALLERY_IMG) {
+
+        if (resultCode == getActivity().RESULT_OK && requestCode == RESULT_GALLERY_IMG1) {
+            Uri imageUri;
             imageUri = data.getData();
             //uri = imageUri;
             imageView.setImageURI( imageUri );
@@ -183,6 +186,7 @@ public class Modificar_Usuarios extends Fragment {
             try {
                 photo = MediaStore.Images.Media.getBitmap( getActivity().getContentResolver(), imageUri );
             } catch (Exception ex) {
+                Toast.makeText( getContext(),ex.getMessage(),Toast.LENGTH_SHORT ).show();
             }
         }
     }

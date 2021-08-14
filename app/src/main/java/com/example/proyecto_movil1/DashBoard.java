@@ -48,6 +48,8 @@ public class DashBoard extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
+        shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
+        CheckLogin();
 
         bottomNavigationView = findViewById(R.id.ButtonNavigation);;
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -111,13 +113,16 @@ public class DashBoard extends AppCompatActivity {
 
      */
 
+    /*
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
         shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
-        CheckLogin();
+        //CheckLogin();
 
     }
+
+     */
 
     public void CheckLogin() {
         try {

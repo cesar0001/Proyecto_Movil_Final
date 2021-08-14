@@ -440,7 +440,13 @@ public class informacionPedidos extends Fragment {
                     if(btnAc.getText().equals( "Calificar Pedido" )){
                         Rating();
                     }
+                }else{
+                    String geoUri = "http://maps.google.com/maps?q=loc:" + latitud_info + "," + longitud_info + " (" + "My Ubicacion" + ")";
+                    Uri location = Uri.parse(geoUri);
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+                    startActivity(mapIntent);
                 }
+
 
                 dialogInforDetalle.dismiss();
 

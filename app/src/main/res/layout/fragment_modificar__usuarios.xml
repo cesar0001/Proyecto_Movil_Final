@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imgModificar"
+            android:id="@+id/imgModificarA"
             android:layout_width="184dp"
             android:layout_height="160dp"
             android:layout_marginTop="28dp"
@@ -57,7 +57,7 @@
             app:helperTextTextColor="@color/rojo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgModificar">
+            app:layout_constraintTop_toBottomOf="@+id/imgModificarA">
 
             <com.google.android.material.textfield.TextInputEditText
 
