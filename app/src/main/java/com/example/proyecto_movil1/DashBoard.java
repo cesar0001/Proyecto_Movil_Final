@@ -157,6 +157,7 @@ public class DashBoard extends AppCompatActivity {
             if (shp == null)
                 shp = getSharedPreferences( "myPreferences", MODE_PRIVATE );
 
+            Categoria_Fragmento.Carrito_Compras.clear();
 
 
                 shpEditor = shp.edit();
