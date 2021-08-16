@@ -441,12 +441,21 @@ public class informacionPedidos extends Fragment {
                         Rating();
                     }
                 }else{
+                    /*
+                    String geoUri = "http://maps.google.com/maps?q=loc:" + latitud_info + "," + longitud_info + " (" + "My Ubicacion" + ")";
+                    Uri location = Uri.parse(geoUri);
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+                    startActivity(mapIntent);
+
+                     */
+                }
+
+                if(btnAc.getText().equals( "Ubicacion" )){
                     String geoUri = "http://maps.google.com/maps?q=loc:" + latitud_info + "," + longitud_info + " (" + "My Ubicacion" + ")";
                     Uri location = Uri.parse(geoUri);
                     Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
                     startActivity(mapIntent);
                 }
-
 
                 dialogInforDetalle.dismiss();
 
