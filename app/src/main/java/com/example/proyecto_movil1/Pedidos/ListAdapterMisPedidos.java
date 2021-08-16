@@ -54,8 +54,14 @@ public class ListAdapterMisPedidos extends ArrayAdapter {
 
         RatingBar calificador = view.findViewById( R.id.ratingBarpedidos );
         //calificador.setVisibility( View.GONE );
-        float valor = (Float.parseFloat( modelo.getCalificacion() )  );
-        calificador.setRating( valor );
+        try {
+            float valor = (Float.parseFloat( modelo.getCalificacion() )  );
+            calificador.setRating( valor );
+        }catch (Exception e){
+            float valor = 0;
+            calificador.setRating( valor );
+        }
+
 
 
         //return super.getView(position, convertView, parent);
